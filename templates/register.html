@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Register for Workshop{% endblock %}
+{% block content %}
+<div class="flex flex-col items-center justify-center py-12">
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-2xl mx-auto" style="max-height: 90vh; overflow-y: auto;">
+        <h2 class="text-2xl font-bold text-msublue mb-6 text-center">Register for the Workshop</h2>
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_full_name">Full Name</label>
+            <input type="text" name="full_name" id="id_full_name" maxlength="100" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Enter your full name" value="{{ form.full_name.value|default:'' }}">
+            {% if form.full_name.errors %}<p class="text-red-500 text-xs mt-1">{{ form.full_name.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_email">Email Address</label>
+            <input type="email" name="email" id="id_email" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="you@email.com" value="{{ form.email.value|default:'' }}">
+            {% if form.email.errors %}<p class="text-red-500 text-xs mt-1">{{ form.email.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_phone">Phone Number</label>
+            <input type="tel" name="phone" id="id_phone" class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Phone number" value="{{ form.phone.value|default:'' }}">
+            {% if form.phone.errors %}<p class="text-red-500 text-xs mt-1">{{ form.phone.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_organization">Organization/Institution</label>
+            <input type="text" name="organization" id="id_organization" maxlength="150" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Organization" value="{{ form.organization.value|default:'' }}">
+            {% if form.organization.errors %}<p class="text-red-500 text-xs mt-1">{{ form.organization.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_title">Job Title/Position</label>
+            <input type="text" name="title" id="id_title" maxlength="100" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Title/Position" value="{{ form.title.value|default:'' }}">
+            {% if form.title.errors %}<p class="text-red-500 text-xs mt-1">{{ form.title.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_city">City/Town</label>
+            <input type="text" name="city" id="id_city" class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="City/Town" value="{{ form.city.value|default:'' }}">
+            {% if form.city.errors %}<p class="text-red-500 text-xs mt-1">{{ form.city.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_country">Country</label>
+            <input type="text" name="country" id="id_country" class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Country" value="{{ form.country.value|default:'' }}">
+            {% if form.country.errors %}<p class="text-red-500 text-xs mt-1">{{ form.country.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1">Workshop</label>
+            <input type="text" value="Tax Workshop on TARMS" readonly class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 bg-gray-100">
+            <input type="hidden" name="workshop" value="Tax Workshop on TARMS">
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1">Payment Method</label>
+            <label><input type="radio" name="payment_method" value="bankTransfer" checked> Bank Transfer</label>
+            <input type="hidden" name="payment_method" value="bankTransfer">
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_bank_name">Bank Name</label>
+            <input type="text" name="bank_name" id="id_bank_name" class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Bank Name" value="{{ form.bank_name.value|default:'' }}">
+            {% if form.bank_name.errors %}<p class="text-red-500 text-xs mt-1">{{ form.bank_name.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_account_holder">Account Holder Name</label>
+            <input type="text" name="account_holder" id="id_account_holder" class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Account Holder Name" value="{{ form.account_holder.value|default:'' }}">
+            {% if form.account_holder.errors %}<p class="text-red-500 text-xs mt-1">{{ form.account_holder.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_transaction_ref">Transaction Reference Number/Deposit Slip Number</label>
+            <input type="text" name="transaction_ref" id="id_transaction_ref" maxlength="100" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Reference Number" value="{{ form.transaction_ref.value|default:'' }}">
+            {% if form.transaction_ref.errors %}<p class="text-red-500 text-xs mt-1">{{ form.transaction_ref.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_payment_date">Date of Payment</label>
+            <input type="date" name="payment_date" id="id_payment_date" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition bg-white" value="{{ form.payment_date.value|default:'' }}">
+            {% if form.payment_date.errors %}<p class="text-red-500 text-xs mt-1">{{ form.payment_date.errors }}</p>{% endif %}
+        </div>
+        <div>
+            <label class="block font-semibold text-msublue mb-1" for="id_amount_paid">Amount Paid (USD)</label>
+            <input type="number" name="amount_paid" id="id_amount_paid" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition" placeholder="Amount Paid" value="{{ form.amount_paid.value|default:'' }}">
+            {% if form.amount_paid.errors %}<p class="text-red-500 text-xs mt-1">{{ form.amount_paid.errors }}</p>{% endif %}
+        </div>
+        <div class="md:col-span-2">
+            <label class="block font-semibold text-msublue mb-1" for="id_proof_of_payment">Proof of Payment (JPG, PNG, PDF)</label>
+            <input type="file" name="proof_of_payment" id="id_proof_of_payment" accept=".jpg,.jpeg,.png,.pdf" required class="pl-3 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-msublue transition bg-white">
+            {% if form.proof_of_payment.errors %}<p class="text-red-500 text-xs mt-1">{{ form.proof_of_payment.errors }}</p>{% endif %}
+        </div>
+        <div class="md:col-span-2">
+            <label><input type="checkbox" name="terms" required {% if form.terms.value %}checked{% endif %}> I agree to the <a href="/terms" target="_blank">terms and conditions</a>.</label>
+            {% if form.terms.errors %}<p class="text-red-500 text-xs mt-1">{{ form.terms.errors }}</p>{% endif %}
+        </div>
+    </div>
+    <button type="submit" class="btn w-full mt-4">Register</button>
+</form>
+    </div>
+</div>
+{% endblock %}
